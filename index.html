@@ -52,14 +52,13 @@
     }
     .brand img {
       height: 32px;
-      filter: brightness(0) saturate(100%) invert(8%) sepia(46%) saturate(1800%) hue-rotate(220deg) brightness(90%);
     }
     .brand-company {
       font-size: 10.5px;
       font-weight: 700;
       letter-spacing: 2.2px;
       text-transform: uppercase;
-      color: var(--smoke-6);
+      color: var(--smoke-7);
     }
 
     /* ── Heading ── */
@@ -113,13 +112,6 @@
       box-shadow: 0 8px 28px rgba(25,18,72,.09), 0 2px 6px rgba(25,18,72,.05);
       transform: translateY(-2px);
     }
-    .tile.featured {
-      border-color: var(--red);
-      background: var(--smoke-0);
-    }
-    .tile.featured:hover {
-      box-shadow: 0 8px 28px rgba(232,26,71,.14), 0 2px 6px rgba(232,26,71,.08);
-    }
 
     .tile-top {
       display: flex;
@@ -138,17 +130,6 @@
       font-size: 18px;
       color: var(--smoke-7);
     }
-    .tile.featured .tile-icon { background: rgba(232,26,71,.08); }
-    .tile.featured .tile-icon .material-symbols-outlined { color: var(--red); }
-
-    .popular-dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: var(--red);
-      margin-top: 4px;
-      flex-shrink: 0;
-    }
-
     .tile-body {}
     .tile-name {
       font-size: 15px;
@@ -179,8 +160,6 @@
     }
     .tile-action .material-symbols-outlined { font-size: 14px; }
     .tile:hover .tile-action { color: var(--smoke-9); }
-    .tile.featured .tile-action { color: var(--red); }
-    .tile.featured:hover .tile-action { color: var(--red-dk); }
 
     /* ── Credits ── */
     .credits {
@@ -253,12 +232,11 @@
       </div>
     </a>
 
-    <a href="pro.html" class="tile featured">
+    <a href="pro.html" class="tile">
       <div class="tile-top">
         <div class="tile-icon">
           <span class="material-symbols-outlined">star</span>
         </div>
-        <div class="popular-dot" title="Most Popular"></div>
       </div>
       <div class="tile-body">
         <div class="tile-name">Pro</div>
