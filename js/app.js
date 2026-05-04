@@ -206,7 +206,7 @@ function renderDashboard() {
       </div>
       <div style="display:flex;align-items:center;gap:8px">
         <span class="badge badge-primary" style="font-size:11px;padding:5px 12px">Enterprise Plan</span>
-        <span class="badge badge-success">v2.44.9</span>
+        <span class="badge badge-success">An Idea by Sheeraz Shaikh</span>
       </div>
     </div>
 
