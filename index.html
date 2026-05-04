@@ -1,287 +1,295 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RealEstateApp — Property Management</title>
+  <title>RealEstateApp — Select Plan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #191248;
+      --red:     #e81a47;
+      --red-dk:  #c9143a;
+      --smoke-0: #faf9f7;
+      --smoke-1: #f5f4f1;
+      --smoke-2: #efede9;
+      --smoke-3: #e6e3de;
+      --smoke-4: #d8d5cf;
+      --smoke-5: #c5c2bb;
+      --smoke-6: #9e9b94;
+      --smoke-7: #6e6b64;
+      --smoke-8: #3d3b36;
+      --smoke-9: #1c1b17;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--smoke-2);
+      color: var(--smoke-9);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+    }
+
+    /* ── Logo + brand ── */
+    .brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 44px;
+    }
+    .brand img {
+      height: 32px;
+      filter: brightness(0) saturate(100%) invert(8%) sepia(46%) saturate(1800%) hue-rotate(220deg) brightness(90%);
+    }
+    .brand-company {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      color: var(--smoke-6);
+    }
+
+    /* ── Heading ── */
+    .heading {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .heading h1 {
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 800;
+      color: var(--smoke-9);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    .heading h1 em {
+      font-style: normal;
+      color: var(--red);
+    }
+    .heading p {
+      font-size: 14px;
+      color: var(--smoke-6);
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    /* ── 2×2 grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      width: 100%;
+      max-width: 640px;
+    }
+
+    .tile {
+      background: var(--smoke-0);
+      border: 1px solid var(--smoke-3);
+      border-radius: 14px;
+      padding: 26px 24px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+      position: relative;
+    }
+    .tile:hover {
+      border-color: var(--smoke-5);
+      box-shadow: 0 8px 28px rgba(25,18,72,.09), 0 2px 6px rgba(25,18,72,.05);
+      transform: translateY(-2px);
+    }
+    .tile.featured {
+      border-color: var(--red);
+      background: var(--smoke-0);
+    }
+    .tile.featured:hover {
+      box-shadow: 0 8px 28px rgba(232,26,71,.14), 0 2px 6px rgba(232,26,71,.08);
+    }
+
+    .tile-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .tile-icon {
+      width: 36px; height: 36px;
+      border-radius: 9px;
+      background: var(--smoke-2);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .tile-icon .material-symbols-outlined {
+      font-size: 18px;
+      color: var(--smoke-7);
+    }
+    .tile.featured .tile-icon { background: rgba(232,26,71,.08); }
+    .tile.featured .tile-icon .material-symbols-outlined { color: var(--red); }
+
+    .popular-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--red);
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+
+    .tile-body {}
+    .tile-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--smoke-9);
+      margin-bottom: 3px;
+      letter-spacing: -0.01em;
+    }
+    .tile-units {
+      font-size: 12px;
+      color: var(--smoke-6);
+      font-weight: 500;
+    }
+
+    .tile-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .tile-action {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--smoke-7);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.12s;
+    }
+    .tile-action .material-symbols-outlined { font-size: 14px; }
+    .tile:hover .tile-action { color: var(--smoke-9); }
+    .tile.featured .tile-action { color: var(--red); }
+    .tile.featured:hover .tile-action { color: var(--red-dk); }
+
+    /* ── Credits ── */
+    .credits {
+      margin-top: 44px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      text-align: center;
+    }
+    .credits-line1 {
+      font-size: 12.5px;
+      color: var(--smoke-7);
+      font-weight: 500;
+    }
+    .credits-line1 strong { color: var(--smoke-8); font-weight: 700; }
+    .credits-line2 {
+      font-size: 11px;
+      color: var(--smoke-5);
+      letter-spacing: 0.03em;
+    }
+
+    @media (max-width: 480px) {
+      .grid { grid-template-columns: 1fr; max-width: 340px; }
+      .heading h1 { font-size: 22px; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ═══════════════════════════════════════════
-       LOGIN PAGE
-  ═══════════════════════════════════════════ -->
-  <div id="login-page" class="login-page">
-    <div class="login-card">
-
-      <div class="login-logo" style="margin-bottom:8px;">
-        <img src="logo_dark.svg" class="brand-logo-light" alt="RealEstateApp" style="height:40px;" />
-        <img src="logo_white.svg" class="brand-logo-dark"  alt="RealEstateApp" style="height:40px;" />
-      </div>
-      <div class="login-company">Asico Real Estate LLC</div>
-
-      <form id="login-form" onsubmit="Auth.login(event)" autocomplete="off">
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" id="login-email" placeholder="admin@asico.ae" value="admin@asico.ae" required />
-        </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" id="login-password" placeholder="••••••••" value="admin123" required />
-        </div>
-        <div id="login-error" class="alert alert-danger hidden"></div>
-        <button type="submit" class="btn btn-primary btn-full" style="margin-top:4px;padding:12px;">Sign In</button>
-        <a href="#" class="forgot-link" onclick="showForgotPassword();return false;">Forgot password?</a>
-      </form>
-
-      <div class="login-footer">
-        <div><a href="#">Privacy Policy</a> &middot; <a href="#">Terms of Use</a></div>
-        <div style="margin-top:4px;">v2.44.9 &nbsp;&middot;&nbsp; &copy; 2026 SoftSpace</div>
-      </div>
-    </div>
+  <div class="brand">
+    <img src="logo_dark.svg" alt="RealEstateApp" />
+    <span class="brand-company">Asico Real Estate LLC</span>
   </div>
 
-  <!-- ═══════════════════════════════════════════
-       APP SHELL
-  ═══════════════════════════════════════════ -->
-  <div id="app-shell" class="hidden">
-
-    <!-- ─── SIDEBAR ─── -->
-    <aside id="sidebar" class="sidebar mobile-hidden">
-
-      <div class="sidebar-header">
-        <div class="sidebar-logo">
-          <img src="logo_white.svg" alt="RealEstateApp" style="height:22px;" />
-        </div>
-        <button class="sidebar-toggle" onclick="toggleSidebar()" title="Toggle sidebar">
-          <span class="material-symbols-outlined" style="font-size:18px;">menu</span>
-        </button>
-      </div>
-
-      <!-- Workspace selector -->
-      <div class="sidebar-company">
-        <div style="position:relative;">
-          <select class="workspace-select" onchange="toast('Switched to ' + this.options[this.selectedIndex].text,'success')">
-            <option value="asico">Asico Real Estate LLC</option>
-            <option value="softspace">SoftSpace Properties</option>
-            <option value="nexus">Nexus Realty Group</option>
-          </select>
-          <span class="material-symbols-outlined" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:14px;color:rgba(255,255,255,.4);pointer-events:none;">unfold_more</span>
-        </div>
-      </div>
-
-      <!-- Navigation -->
-      <nav class="sidebar-nav" id="sidebar-nav">
-
-        <a class="nav-item" data-route="dashboard" onclick="navigate('dashboard')">
-          <span class="nav-icon material-symbols-outlined">dashboard</span>
-          <span class="nav-label">Dashboard</span>
-        </a>
-
-        <a class="nav-item" data-route="direct-debit" onclick="navigate('direct-debit')">
-          <span class="nav-icon material-symbols-outlined">credit_card</span>
-          <span class="nav-label">Direct Debit</span>
-        </a>
-
-        <!-- Property Management -->
-        <div class="nav-group">
-          <div class="nav-group-header" onclick="toggleGroup(this)">
-            <span class="nav-icon material-symbols-outlined">location_city</span>
-            <span class="nav-label">Property Mgmt.</span>
-            <span class="nav-arrow material-symbols-outlined">expand_more</span>
-          </div>
-          <div class="nav-group-items">
-            <a class="nav-item sub" data-route="projects"    onclick="navigate('projects')"><span class="nav-label">Projects</span></a>
-            <a class="nav-item sub" data-route="properties"  onclick="navigate('properties')"><span class="nav-label">Properties</span></a>
-            <a class="nav-item sub" data-route="units"       onclick="navigate('units')"><span class="nav-label">Units</span></a>
-            <a class="nav-item sub" data-route="lessor"      onclick="navigate('lessor')"><span class="nav-label">Lessor</span></a>
-          </div>
-        </div>
-
-        <!-- CRM -->
-        <div class="nav-group">
-          <div class="nav-group-header" onclick="toggleGroup(this)">
-            <span class="nav-icon material-symbols-outlined">assignment</span>
-            <span class="nav-label">CRM</span>
-            <span class="nav-arrow material-symbols-outlined">expand_more</span>
-          </div>
-          <div class="nav-group-items">
-            <a class="nav-item sub" data-route="leads"           onclick="navigate('leads')"><span class="nav-label">Leads</span></a>
-            <a class="nav-item sub" data-route="leasing-request" onclick="navigate('leasing-request')"><span class="nav-label">Leasing Request</span></a>
-            <a class="nav-item sub" data-route="booking"         onclick="navigate('booking')"><span class="nav-label">Booking</span></a>
-          </div>
-        </div>
-
-        <!-- Accounts -->
-        <div class="nav-group">
-          <div class="nav-group-header" onclick="toggleGroup(this)">
-            <span class="nav-icon material-symbols-outlined">account_balance_wallet</span>
-            <span class="nav-label">Accounts</span>
-            <span class="nav-arrow material-symbols-outlined">expand_more</span>
-          </div>
-          <div class="nav-group-items">
-            <a class="nav-item sub" data-route="collection"   onclick="navigate('collection')"><span class="nav-label">Collection</span></a>
-            <a class="nav-item sub" data-route="bank-deposit" onclick="navigate('bank-deposit')"><span class="nav-label">Bank Deposit</span></a>
-          </div>
-        </div>
-
-        <!-- People -->
-        <div class="nav-group">
-          <div class="nav-group-header" onclick="toggleGroup(this)">
-            <span class="nav-icon material-symbols-outlined">group</span>
-            <span class="nav-label">People</span>
-            <span class="nav-arrow material-symbols-outlined">expand_more</span>
-          </div>
-          <div class="nav-group-items">
-            <a class="nav-item sub" data-route="tenants"       onclick="navigate('tenants')"><span class="nav-label">Tenants</span></a>
-            <a class="nav-item sub" data-route="agents"        onclick="navigate('agents')"><span class="nav-label">Agents</span></a>
-            <a class="nav-item sub" data-route="property-admin" onclick="navigate('property-admin')"><span class="nav-label">Property Admin</span></a>
-            <a class="nav-item sub" data-route="facilitators"  onclick="navigate('facilitators')"><span class="nav-label">Facilitators</span></a>
-          </div>
-        </div>
-
-        <a class="nav-item" data-route="contracts"  onclick="navigate('contracts')">
-          <span class="nav-icon material-symbols-outlined">description</span>
-          <span class="nav-label">Contracts</span>
-        </a>
-        <a class="nav-item" data-route="renewals"   onclick="navigate('renewals')">
-          <span class="nav-icon material-symbols-outlined">autorenew</span>
-          <span class="nav-label">Renewals</span>
-        </a>
-        <a class="nav-item" data-route="approvals"  onclick="navigate('approvals')">
-          <span class="nav-icon material-symbols-outlined">check_circle</span>
-          <span class="nav-label">Approvals</span>
-        </a>
-        <a class="nav-item" data-route="legal"       onclick="navigate('legal')">
-          <span class="nav-icon material-symbols-outlined">gavel</span>
-          <span class="nav-label">Legal</span>
-        </a>
-        <a class="nav-item" data-route="maintenance" onclick="navigate('maintenance')">
-          <span class="nav-icon material-symbols-outlined">handyman</span>
-          <span class="nav-label">Maintenance</span>
-        </a>
-
-        <!-- Inspection -->
-        <div class="nav-group">
-          <div class="nav-group-header" onclick="toggleGroup(this)">
-            <span class="nav-icon material-symbols-outlined">fact_check</span>
-            <span class="nav-label">Inspection</span>
-            <span class="nav-arrow material-symbols-outlined">expand_more</span>
-          </div>
-          <div class="nav-group-items">
-            <a class="nav-item sub" data-route="move-in"  onclick="navigate('move-in')"><span class="nav-label">Move In</span></a>
-            <a class="nav-item sub" data-route="move-out" onclick="navigate('move-out')"><span class="nav-label">Move Out</span></a>
-          </div>
-        </div>
-
-        <a class="nav-item" data-route="mailbox"   onclick="navigate('mailbox')">
-          <span class="nav-icon material-symbols-outlined">mail</span>
-          <span class="nav-label">Mail Box</span>
-        </a>
-        <a class="nav-item" data-route="reports"   onclick="navigate('reports')">
-          <span class="nav-icon material-symbols-outlined">bar_chart</span>
-          <span class="nav-label">Reports</span>
-        </a>
-        <a class="nav-item" data-route="workboard" onclick="navigate('workboard')">
-          <span class="nav-icon material-symbols-outlined">view_kanban</span>
-          <span class="nav-label">Workboard</span>
-        </a>
-        <a class="nav-item" data-route="settings"  onclick="navigate('settings')">
-          <span class="nav-icon material-symbols-outlined">settings</span>
-          <span class="nav-label">Settings</span>
-        </a>
-
-      </nav>
-    </aside>
-
-    <!-- ─── MAIN AREA ─── -->
-    <div id="main-area" class="main-area">
-
-      <!-- TOP BAR -->
-      <header class="topbar">
-        <div class="topbar-left">
-          <button class="sidebar-toggle-top" onclick="toggleSidebar()" title="Toggle menu">
-            <span class="material-symbols-outlined">menu</span>
-          </button>
-          <div class="breadcrumb" id="breadcrumb">Dashboard</div>
-        </div>
-
-        <div class="topbar-right">
-
-          <!-- Notifications -->
-          <div class="notif-wrapper">
-            <button class="topbar-btn notif-btn" onclick="toggleNotifications()" title="Notifications">
-              <span class="material-symbols-outlined">notifications</span>
-              <span class="notif-badge" id="notif-count">5</span>
-            </button>
-            <div id="notif-panel" class="notif-panel hidden">
-              <div class="notif-header">
-                <span>Notifications</span>
-                <button onclick="markAllRead()" class="btn-text" style="font-size:12px;">Mark all read</button>
-              </div>
-              <div id="notif-list"></div>
-            </div>
-          </div>
-
-          <!-- User Menu -->
-          <div class="user-wrapper">
-            <button class="user-btn" onclick="toggleUserMenu()">
-              <div class="user-avatar">SS</div>
-              <div class="user-info">
-                <span class="user-name">Sheeraz Shaikh</span>
-                <span class="user-role">Super Admin</span>
-              </div>
-              <span class="material-symbols-outlined" style="font-size:15px;color:var(--gray-400);">expand_more</span>
-            </button>
-            <div id="user-menu" class="user-menu hidden">
-              <a onclick="navigate('settings')">
-                <span class="material-symbols-outlined" style="font-size:16px;">person</span>Profile Settings
-              </a>
-              <a onclick="navigate('settings')">
-                <span class="material-symbols-outlined" style="font-size:16px;">lock</span>Change Password
-              </a>
-              <div class="menu-divider"></div>
-              <a onclick="Auth.logout()" class="text-danger">
-                <span class="material-symbols-outlined" style="font-size:16px;">logout</span>Sign Out
-              </a>
-            </div>
-          </div>
-
-        </div>
-      </header>
-
-      <!-- PAGE CONTENT -->
-      <main id="page-content" class="page-content">
-        <div class="loading-spinner">Loading…</div>
-      </main>
-
-    </div>
+  <div class="heading">
+    <h1>Select your <em>plan</em></h1>
+    <p>Choose a subscription to access the dashboard</p>
   </div>
 
-  <!-- ═══════════════════════════════════════════
-       MODAL
-  ═══════════════════════════════════════════ -->
-  <div id="modal-overlay" class="modal-overlay hidden" onclick="closeModalOnOverlay(event)">
-    <div id="modal-box" class="modal-box">
-      <div class="modal-header">
-        <h3 id="modal-title"></h3>
-        <button class="modal-close" onclick="closeModal()">
-          <span class="material-symbols-outlined">close</span>
-        </button>
+  <div class="grid">
+
+    <a href="free.html" class="tile">
+      <div class="tile-top">
+        <div class="tile-icon">
+          <span class="material-symbols-outlined">star_outline</span>
+        </div>
       </div>
-      <div id="modal-body"   class="modal-body"></div>
-      <div id="modal-footer" class="modal-footer"></div>
-    </div>
+      <div class="tile-body">
+        <div class="tile-name">Free</div>
+        <div class="tile-units">Up to 100 units</div>
+      </div>
+      <div class="tile-footer">
+        <span class="tile-action">Open <span class="material-symbols-outlined">arrow_forward</span></span>
+      </div>
+    </a>
+
+    <a href="lite.html" class="tile">
+      <div class="tile-top">
+        <div class="tile-icon">
+          <span class="material-symbols-outlined">star_half</span>
+        </div>
+      </div>
+      <div class="tile-body">
+        <div class="tile-name">Lite</div>
+        <div class="tile-units">Up to 1,000 units</div>
+      </div>
+      <div class="tile-footer">
+        <span class="tile-action">Open <span class="material-symbols-outlined">arrow_forward</span></span>
+      </div>
+    </a>
+
+    <a href="pro.html" class="tile featured">
+      <div class="tile-top">
+        <div class="tile-icon">
+          <span class="material-symbols-outlined">star</span>
+        </div>
+        <div class="popular-dot" title="Most Popular"></div>
+      </div>
+      <div class="tile-body">
+        <div class="tile-name">Pro</div>
+        <div class="tile-units">Up to 10,000 units</div>
+      </div>
+      <div class="tile-footer">
+        <span class="tile-action">Open <span class="material-symbols-outlined">arrow_forward</span></span>
+      </div>
+    </a>
+
+    <a href="enterprise.html" class="tile">
+      <div class="tile-top">
+        <div class="tile-icon">
+          <span class="material-symbols-outlined">workspace_premium</span>
+        </div>
+      </div>
+      <div class="tile-body">
+        <div class="tile-name">Enterprise</div>
+        <div class="tile-units">Unlimited units</div>
+      </div>
+      <div class="tile-footer">
+        <span class="tile-action">Open <span class="material-symbols-outlined">arrow_forward</span></span>
+      </div>
+    </a>
+
   </div>
 
-  <!-- ═══════════════════════════════════════════
-       TOAST CONTAINER
-  ═══════════════════════════════════════════ -->
-  <div id="toast-container" class="toast-container"></div>
+  <footer class="credits">
+    <div class="credits-line1">Developed by <strong>Shoaib Ahmed</strong> &nbsp;·&nbsp; Web Developer — ASICO</div>
+    <div class="credits-line2">An Idea by Sheeraz Shaikh</div>
+  </footer>
 
-  <script src="js/data.js"></script>
-  <script src="js/app.js"></script>
 </body>
 </html>
