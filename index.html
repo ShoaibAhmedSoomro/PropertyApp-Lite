@@ -10,180 +10,157 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy:    #191248;
-      --red:     #e81a47;
-      --red-dk:  #c9143a;
-      --smoke-0: #faf9f7;
-      --smoke-1: #f5f4f1;
-      --smoke-2: #efede9;
-      --smoke-3: #e6e3de;
-      --smoke-4: #d8d5cf;
-      --smoke-5: #c5c2bb;
-      --smoke-6: #9e9b94;
-      --smoke-7: #6e6b64;
-      --smoke-8: #3d3b36;
-      --smoke-9: #1c1b17;
-      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --navy:   #191248;
+      --red:    #e81a47;
+      --font:   'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
-    html, body {
-      height: 100%;
-    }
+    html, body { height: 100%; }
 
     body {
       font-family: var(--font);
-      background: var(--smoke-2);
-      color: var(--smoke-9);
+      background: var(--navy);
+      color: #fff;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 40px 24px;
+      position: relative;
+      overflow: hidden;
     }
 
-    /* ── Logo + brand ── */
+    body::before {
+      content: '';
+      position: absolute;
+      width: 700px; height: 700px;
+      top: -300px; right: -200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,26,71,.14) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    body::after {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      bottom: -200px; left: -150px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,.04) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
     .brand {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 10px;
-      margin-bottom: 44px;
+      margin-bottom: 48px;
+      position: relative;
+      z-index: 1;
     }
-    .brand img {
-      height: 32px;
-    }
+    .brand img { height: 34px; }
     .brand-company {
       font-size: 10.5px;
       font-weight: 700;
-      letter-spacing: 2.2px;
+      letter-spacing: 2.4px;
       text-transform: uppercase;
-      color: var(--smoke-7);
+      color: rgba(255,255,255,.4);
     }
 
-    /* ── Heading ── */
     .heading {
       text-align: center;
       margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
     }
     .heading h1 {
       font-size: clamp(22px, 4vw, 32px);
       font-weight: 800;
-      color: var(--smoke-9);
-      line-height: 1.25;
-      letter-spacing: -0.02em;
+      color: #fff;
+      line-height: 1.2;
+      letter-spacing: -0.025em;
       margin-bottom: 10px;
     }
-    .heading h1 em {
-      font-style: normal;
-      color: var(--red);
-    }
+    .heading h1 em { font-style: normal; color: var(--red); }
     .heading p {
       font-size: 14px;
-      color: var(--smoke-6);
-      font-weight: 400;
+      color: rgba(255,255,255,.5);
       line-height: 1.6;
     }
 
-    /* ── 2×2 grid ── */
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 14px;
       width: 100%;
-      max-width: 640px;
+      max-width: 560px;
+      position: relative;
+      z-index: 1;
     }
 
     .tile {
-      background: var(--smoke-0);
-      border: 1px solid var(--smoke-3);
-      border-radius: 14px;
-      padding: 26px 24px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      padding: 24px 22px;
       text-decoration: none;
       color: inherit;
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
-      position: relative;
+      gap: 12px;
+      transition: background 0.15s, border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
     .tile:hover {
-      border-color: var(--smoke-5);
-      box-shadow: 0 8px 28px rgba(25,18,72,.09), 0 2px 6px rgba(25,18,72,.05);
-      transform: translateY(-2px);
+      background: rgba(255,255,255,.10);
+      border-color: rgba(255,255,255,.22);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0,0,0,.25);
+      color: inherit;
     }
 
-    .tile-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 8px;
-    }
     .tile-icon {
-      width: 36px; height: 36px;
-      border-radius: 9px;
-      background: var(--smoke-2);
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.08);
       display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
     }
-    .tile-icon .material-symbols-outlined {
-      font-size: 18px;
-      color: var(--smoke-7);
-    }
-    .tile-body {}
-    .tile-name {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--smoke-9);
-      margin-bottom: 3px;
-      letter-spacing: -0.01em;
-    }
-    .tile-units {
-      font-size: 12px;
-      color: var(--smoke-6);
-      font-weight: 500;
-    }
+    .tile-icon .material-symbols-outlined { font-size: 18px; color: rgba(255,255,255,.6); }
 
-    .tile-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+    .tile-name  { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
+    .tile-units { font-size: 12px; color: rgba(255,255,255,.45); font-weight: 500; margin-top: 2px; }
+
     .tile-action {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--smoke-7);
       display: flex;
       align-items: center;
       gap: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,.4);
+      margin-top: auto;
       transition: color 0.12s;
     }
     .tile-action .material-symbols-outlined { font-size: 14px; }
-    .tile:hover .tile-action { color: var(--smoke-9); }
+    .tile:hover .tile-action { color: rgba(255,255,255,.8); }
 
-    /* ── Credits ── */
     .credits {
       margin-top: 44px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
-    .credits-line1 {
-      font-size: 12.5px;
-      color: var(--smoke-7);
-      font-weight: 500;
-    }
-    .credits-line1 strong { color: var(--smoke-8); font-weight: 700; }
-    .credits-line2 {
-      font-size: 11px;
-      color: var(--smoke-5);
-      letter-spacing: 0.03em;
-    }
+    .credits-line1 { font-size: 12.5px; color: rgba(255,255,255,.4); font-weight: 500; }
+    .credits-line1 strong { color: rgba(255,255,255,.65); font-weight: 700; }
+    .credits-line2 { font-size: 11px; color: rgba(255,255,255,.25); letter-spacing: 0.03em; }
 
     @media (max-width: 480px) {
-      .grid { grid-template-columns: 1fr; max-width: 340px; }
+      .grid { grid-template-columns: 1fr; max-width: 320px; }
       .heading h1 { font-size: 22px; }
     }
   </style>
@@ -191,7 +168,7 @@
 <body>
 
   <div class="brand">
-    <img src="logo_dark.svg" alt="PropertyApp" />
+    <img src="logo_white.svg" alt="PropertyApp" />
     <span class="brand-company">Asico Real Estate LLC</span>
   </div>
 
@@ -203,63 +180,39 @@
   <div class="grid">
 
     <a href="free.html" class="tile">
-      <div class="tile-top">
-        <div class="tile-icon">
-          <span class="material-symbols-outlined">star_outline</span>
-        </div>
-      </div>
-      <div class="tile-body">
+      <div class="tile-icon"><span class="material-symbols-outlined">star_outline</span></div>
+      <div>
         <div class="tile-name">Free</div>
         <div class="tile-units">Up to 100 units</div>
       </div>
-      <div class="tile-footer">
-        <span class="tile-action">Open <span class="material-symbols-outlined">arrow_forward</span></span>
-      </div>
+      <div class="tile-action">Open <span class="material-symbols-outlined">arrow_forward</span></div>
     </a>
 
     <a href="lite.html" class="tile">
-      <div class="tile-top">
-        <div class="tile-icon">
-          <span class="material-symbols-outlined">star_half</span>
-        </div>
-      </div>
-      <div class="tile-body">
+      <div class="tile-icon"><span class="material-symbols-outlined">star_half</span></div>
+      <div>
         <div class="tile-name">Lite</div>
         <div class="tile-units">Up to 1,000 units</div>
       </div>
-      <div class="tile-footer">
-        <span class="tile-action">Open <span class="material-symbols-outlined">arrow_forward</span></span>
-      </div>
+      <div class="tile-action">Open <span class="material-symbols-outlined">arrow_forward</span></div>
     </a>
 
     <a href="pro.html" class="tile">
-      <div class="tile-top">
-        <div class="tile-icon">
-          <span class="material-symbols-outlined">star</span>
-        </div>
-      </div>
-      <div class="tile-body">
+      <div class="tile-icon"><span class="material-symbols-outlined">star</span></div>
+      <div>
         <div class="tile-name">Pro</div>
         <div class="tile-units">Up to 10,000 units</div>
       </div>
-      <div class="tile-footer">
-        <span class="tile-action">Open <span class="material-symbols-outlined">arrow_forward</span></span>
-      </div>
+      <div class="tile-action">Open <span class="material-symbols-outlined">arrow_forward</span></div>
     </a>
 
     <a href="enterprise.html" class="tile">
-      <div class="tile-top">
-        <div class="tile-icon">
-          <span class="material-symbols-outlined">workspace_premium</span>
-        </div>
-      </div>
-      <div class="tile-body">
+      <div class="tile-icon"><span class="material-symbols-outlined">workspace_premium</span></div>
+      <div>
         <div class="tile-name">Enterprise</div>
         <div class="tile-units">Unlimited units</div>
       </div>
-      <div class="tile-footer">
-        <span class="tile-action">Open <span class="material-symbols-outlined">arrow_forward</span></span>
-      </div>
+      <div class="tile-action">Open <span class="material-symbols-outlined">arrow_forward</span></div>
     </a>
 
   </div>

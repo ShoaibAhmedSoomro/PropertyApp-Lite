@@ -762,10 +762,11 @@ input, select, textarea, button { font-family: inherit; font-size: inherit; }
   min-width: 0;
 }
 
+/* ── Topbar — Deep Navy per brand guidelines ── */
 .topbar {
   height: var(--topbar-height);
-  background: var(--bg-elevated);
-  border-bottom: 1px solid var(--border-light);
+  background: var(--navy);
+  border-bottom: 1px solid rgba(255,255,255,.06);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -774,16 +775,20 @@ input, select, textarea, button { font-family: inherit; font-size: inherit; }
   position: sticky;
   top: 0;
   z-index: 50;
-  box-shadow: 0 1px 0 var(--border-light), var(--shadow-xs);
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+}
+[data-theme="dark"] .topbar {
+  background: #0b0a16;
+  border-bottom-color: rgba(255,255,255,.05);
 }
 
 .topbar-left  { display: flex; align-items: center; gap: 12px; }
-.topbar-right { display: flex; align-items: center; gap: 6px; }
+.topbar-right { display: flex; align-items: center; gap: 4px; }
 
 .sidebar-toggle-top {
   background: transparent;
   border: none;
-  color: var(--text-secondary);
+  color: rgba(255,255,255,.6);
   cursor: pointer;
   width: 34px; height: 34px;
   display: flex; align-items: center; justify-content: center;
@@ -791,13 +796,13 @@ input, select, textarea, button { font-family: inherit; font-size: inherit; }
   transition: all var(--t-fast);
   font-size: 20px;
 }
-.sidebar-toggle-top:hover { background: var(--smoke-3); color: var(--text-primary); }
+.sidebar-toggle-top:hover { background: rgba(255,255,255,.08); color: #fff; }
 
 .breadcrumb {
   font-size: 13px;
   font-weight: 700;
-  color: var(--text-primary);
-  letter-spacing: -0.01em;
+  color: rgba(255,255,255,.9);
+  letter-spacing: 0.01em;
 }
 
 .topbar-btn {
@@ -805,14 +810,14 @@ input, select, textarea, button { font-family: inherit; font-size: inherit; }
   background: transparent;
   border: none;
   border-radius: var(--r-md);
-  color: var(--text-secondary);
+  color: rgba(255,255,255,.6);
   font-size: 18px;
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   transition: all var(--t-fast);
   position: relative;
 }
-.topbar-btn:hover { background: var(--smoke-3); color: var(--text-primary); }
+.topbar-btn:hover { background: rgba(255,255,255,.08); color: #fff; }
 
 .notif-badge {
   position: absolute;
@@ -824,7 +829,7 @@ input, select, textarea, button { font-family: inherit; font-size: inherit; }
   min-width: 15px; height: 15px;
   border-radius: var(--r-pill);
   display: flex; align-items: center; justify-content: center;
-  border: 2px solid var(--bg-elevated);
+  border: 2px solid var(--navy);
   line-height: 1;
 }
 
@@ -833,19 +838,19 @@ input, select, textarea, button { font-family: inherit; font-size: inherit; }
   display: flex;
   align-items: center;
   gap: 9px;
-  background: transparent;
-  border: 1.5px solid var(--border-light);
+  background: rgba(255,255,255,.06);
+  border: 1.5px solid rgba(255,255,255,.12);
   padding: 5px 10px 5px 6px;
   cursor: pointer;
   border-radius: var(--r-lg);
   transition: all var(--t-fast);
   margin-left: 4px;
 }
-.user-btn:hover { background: var(--smoke-3); border-color: var(--border); }
+.user-btn:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.2); }
 
 .user-avatar {
   width: 28px; height: 28px;
-  background: var(--navy);
+  background: var(--red);
   color: #fff;
   border-radius: var(--r-pill);
   display: flex; align-items: center; justify-content: center;
@@ -854,11 +859,10 @@ input, select, textarea, button { font-family: inherit; font-size: inherit; }
   letter-spacing: 0.5px;
   flex-shrink: 0;
 }
-[data-theme="dark"] .user-avatar { background: var(--red); }
 
 .user-info  { display: flex; flex-direction: column; text-align: left; }
-.user-name  { font-size: 12.5px; font-weight: 700; color: var(--text-primary); line-height: 1.2; }
-.user-role  { font-size: 10.5px; color: var(--text-secondary); }
+.user-name  { font-size: 12.5px; font-weight: 700; color: rgba(255,255,255,.9); line-height: 1.2; }
+.user-role  { font-size: 10.5px; color: rgba(255,255,255,.5); }
 
 /* Dropdowns */
 .notif-wrapper, .user-wrapper { position: relative; }
