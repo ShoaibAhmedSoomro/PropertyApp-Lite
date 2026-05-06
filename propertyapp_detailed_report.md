@@ -1,10 +1,10 @@
-# 🏢 RealEstateApp.ae — Comprehensive Application Analysis Report
+# 🏢 propertyapp.ae — Comprehensive Application Analysis Report
 
 **Date:** May 4, 2026  
-**URL:** https://realestateapp.ae/  
+**URL:** https://propertyapp.ae/  
 **Developer:** Realestate App Tech Limited / SoftSpace  
 **Client Company (Demo):** Asico Real Estate LLC  
-**Support Email:** support@realestateapp.ae / apps@realestateapp.ae
+**Support Email:** support@propertyapp.ae / apps@propertyapp.ae
 
 ---
 
@@ -27,7 +27,7 @@
 
 ## 1. Executive Summary
 
-**RealEstateApp.ae** is a comprehensive, enterprise-grade **Property Management SaaS application** purpose-built for the UAE real estate market. It provides end-to-end leasing lifecycle management — from lead capture and CRM through contract generation, rent collection, maintenance, inspections, and legal proceedings.
+**propertyapp.ae** is a comprehensive, enterprise-grade **Property Management SaaS application** purpose-built for the UAE real estate market. It provides end-to-end leasing lifecycle management — from lead capture and CRM through contract generation, rent collection, maintenance, inspections, and legal proceedings.
 
 The application is operated under **Realestate App Tech Limited** and is developed by **SoftSpace** (softspace.ae). It targets property management companies to streamline their leasing operations, offering both a web portal and native mobile apps (iOS & Android).
 
@@ -489,9 +489,9 @@ The main dashboard provides a high-level financial and operational overview:
 ### Android App
 | Detail | Value |
 |---|---|
-| **Package** | `ae.softspace.realestateapp` |
+| **Package** | `ae.softspace.propertyapp` |
 | **Developer** | Realestate App |
-| **Support Email** | apps@realestateapp.ae |
+| **Support Email** | apps@propertyapp.ae |
 
 ### Version History (Recent)
 | Version | Date | Key Changes |
@@ -602,7 +602,7 @@ The main dashboard provides a high-level financial and operational overview:
 
 ## Summary
 
-**RealEstateApp.ae** is a mature, feature-rich property management platform that covers the full leasing lifecycle for UAE-based real estate companies. Built on Angular with Material Design, it provides **16+ distinct functional modules** spanning property management, CRM, contracts, finance, maintenance, inspections, and legal proceedings. The application is actively maintained with frequent releases and is available across web, iOS, and Android platforms.
+**propertyapp.ae** is a mature, feature-rich property management platform that covers the full leasing lifecycle for UAE-based real estate companies. Built on Angular with Material Design, it provides **16+ distinct functional modules** spanning property management, CRM, contracts, finance, maintenance, inspections, and legal proceedings. The application is actively maintained with frequent releases and is available across web, iOS, and Android platforms.
 
 The main areas for improvement center around **performance optimization** (removing jQuery/Bootstrap redundancy), **security hardening** (source maps, API key restrictions), and **accessibility compliance** (zoom restrictions). The core business functionality appears comprehensive and well-structured for its target market.
 

@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════
-   RealEstateApp — Mock Data Store
+   PropertyApp — Mock Data Store
    ════════════════════════════════════════════════════ */
 
 const DB = {

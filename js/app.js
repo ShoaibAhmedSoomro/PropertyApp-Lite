@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════
-   RealEstateApp — Main Application
+   PropertyApp — Main Application
    ════════════════════════════════════════════════════ */
 
 /* ── Auth ── */
@@ -9,7 +9,7 @@ const Auth = {
     const email = document.getElementById('login-email').value;
     const pass  = document.getElementById('login-password').value;
     if (email === 'admin@asico.ae' && pass === 'admin123') {
-      localStorage.setItem('rea_auth', '1');
+      localStorage.setItem('pa_auth', '1');
       document.getElementById('login-page').classList.add('hidden');
       document.getElementById('app-shell').classList.remove('hidden');
       navigate('dashboard');
@@ -21,13 +21,13 @@ const Auth = {
     }
   },
   logout() {
-    localStorage.removeItem('rea_auth');
+    localStorage.removeItem('pa_auth');
     document.getElementById('app-shell').classList.add('hidden');
     document.getElementById('login-page').classList.remove('hidden');
     closeUserMenu();
   },
   check() {
-    if (localStorage.getItem('rea_auth')) {
+    if (localStorage.getItem('pa_auth')) {
       document.getElementById('login-page').classList.add('hidden');
       document.getElementById('app-shell').classList.remove('hidden');
       navigate('dashboard');
@@ -1818,7 +1818,7 @@ function renderSettings() {
 
   window.setTheme = theme => {
     document.documentElement.dataset.theme = theme;
-    localStorage.setItem('rea_theme', theme);
+    localStorage.setItem('pa_theme', theme);
     if (currentRoute === 'settings') renderSettings();
     if (currentRoute === 'dashboard') renderDashboard();
   };
@@ -1830,7 +1830,7 @@ function renderSettings() {
    BOOT
    ════════════════════════════════════════════════════ */
 (function init() {
-  const savedTheme = localStorage.getItem('rea_theme') || 'light';
+  const savedTheme = localStorage.getItem('pa_theme') || 'light';
   document.documentElement.dataset.theme = savedTheme;
   Auth.check();
 })();

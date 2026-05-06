@@ -1,6 +1,6 @@
-# 🔬 RealEstateApp.ae — Deep-Dive Technical Report (Supplement)
+# 🔬 propertyapp.ae — Deep-Dive Technical Report (Supplement)
 
-**Date:** May 4, 2026 | **Supplements:** [Main Report](file:///C:/Users/soomr/.gemini/antigravity/brain/ea173a0b-ab05-4013-b458-920ea5b44cae/artifacts/realestateapp_detailed_report.md)
+**Date:** May 4, 2026 | **Supplements:** [Main Report](file:///C:/Users/soomr/.gemini/antigravity/brain/ea173a0b-ab05-4013-b458-920ea5b44cae/artifacts/propertyapp_detailed_report.md)
 
 ---
 
@@ -351,7 +351,7 @@ interface MailMessage {
 Key: AIzaSyCxHosrEIl1N6Ehpzxe-7DqTJudBkzqqiE
 Location: index.html <head> tag
 Risk: HIGH — Could be used for unauthorized Maps API calls, billing abuse
-Fix: Add HTTP referrer restrictions in GCP Console for *.realestateapp.ae
+Fix: Add HTTP referrer restrictions in GCP Console for *.propertyapp.ae
 ```
 
 ### 8.2 Source Maps in Production
@@ -509,7 +509,7 @@ graph TD
 
 ## 15. Competitor Comparison
 
-| Feature | RealEstateApp.ae | Yardi Breeze | Buildium | AppFolio |
+| Feature | propertyapp.ae | Yardi Breeze | Buildium | AppFolio |
 |---|---|---|---|---|
 | UAE/Ejari Support | ✅ | ❌ | ❌ | ❌ |
 | UAE Pass | ✅ | ❌ | ❌ | ❌ |
