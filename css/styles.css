@@ -263,6 +263,15 @@ input, select, textarea, button { font-family: inherit; font-size: inherit; }
   color: #fff; border: none; border-radius: var(--r-sm);
   padding: 5px 11px; font-size: 11.5px; font-weight: 600; cursor: pointer;
 }
+[data-theme="dark"] .form-group input:focus,
+[data-theme="dark"] .form-group select:focus,
+[data-theme="dark"] .form-group textarea:focus {
+  box-shadow: 0 0 0 3px rgba(232,26,71,.15);
+  border-color: var(--red);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: var(--text-muted); }
 
 /* ════════════════════════════════════════════════════
    ALERTS
@@ -681,6 +690,7 @@ input, select, textarea, button { font-family: inherit; font-size: inherit; }
 
 /* Dropdowns */
 .notif-wrapper, .user-wrapper { position: relative; }
+
 .notif-panel, .user-menu {
   position: absolute; top: calc(100% + 8px); right: 0;
   background: var(--white); border: 1px solid var(--border);
