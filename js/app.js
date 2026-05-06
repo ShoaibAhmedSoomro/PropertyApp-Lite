@@ -86,6 +86,12 @@ function navigate(route) {
   currentRoute = route;
   closeUserMenu();
   closeNotifications();
+  // Close mobile sidebar on navigation
+  if (window.innerWidth <= 768) {
+    document.getElementById('sidebar')?.classList.remove('mobile-open');
+    const overlay = document.getElementById('sidebar-overlay');
+    if (overlay) overlay.classList.remove('visible');
+  }
   document.querySelectorAll('.nav-item[data-route]').forEach(el => {
     el.classList.toggle('active', el.dataset.route === route);
   });
@@ -97,8 +103,23 @@ function navigate(route) {
 /* ── Sidebar ── */
 function toggleSidebar() {
   const sb = document.getElementById('sidebar');
-  if (window.innerWidth <= 768) sb.classList.toggle('mobile-hidden');
-  else sb.classList.toggle('collapsed');
+  if (window.innerWidth <= 768) {
+    sb.classList.toggle('mobile-open');
+    let overlay = document.getElementById('sidebar-overlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'sidebar-overlay';
+      overlay.className = 'sidebar-overlay';
+      overlay.onclick = () => {
+        sb.classList.remove('mobile-open');
+        overlay.classList.remove('visible');
+      };
+      document.body.appendChild(overlay);
+    }
+    overlay.classList.toggle('visible', sb.classList.contains('mobile-open'));
+  } else {
+    sb.classList.toggle('collapsed');
+  }
 }
 
 function toggleGroup(header) {
@@ -213,21 +234,25 @@ function renderDashboard() {
     <!-- KPI Row -->
     <div class="kpi-grid">
       <div class="kpi-card purple">
+        <div class="kpi-icon"><span class="material-symbols-outlined">receipt_long</span></div>
         <div class="kpi-label">Total Contract Value</div>
         <div class="kpi-value">${DB.fmtAED(d.TConValue)}</div>
         <div class="kpi-sub">${d.TContract} contracts</div>
       </div>
       <div class="kpi-card cyan">
+        <div class="kpi-icon"><span class="material-symbols-outlined">account_balance</span></div>
         <div class="kpi-label">Unrealised Collection</div>
         <div class="kpi-value">${DB.fmtAED(d.TUnrealiseCol)}</div>
         <div class="kpi-sub">Ready units</div>
       </div>
       <div class="kpi-card emerald">
+        <div class="kpi-icon"><span class="material-symbols-outlined">trending_up</span></div>
         <div class="kpi-label">Est. Full Occupancy</div>
         <div class="kpi-value">${DB.fmtAED(d.TEstCol)}</div>
         <div class="kpi-sub">100% occupied</div>
       </div>
       <div class="kpi-card amber">
+        <div class="kpi-icon"><span class="material-symbols-outlined">home_work</span></div>
         <div class="kpi-label">Occupancy Rate</div>
         <div class="kpi-value">${d.occupancyPct}%</div>
         <div class="kpi-sub">${d.totalOccupied} / ${d.totalUnits} units</div>
@@ -271,16 +296,16 @@ function renderDashboard() {
     <div class="grid-2" style="margin-bottom:16px">
       <div class="card">
         <div class="card-header"><div class="card-title">CRM Pipeline</div></div>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+        <div class="crm-stat-grid">
           ${[
             ['Leads',     d.TLead,           '#191248'],
             ['Requests',  d.TLeasingRequest,  '#e81a47'],
             ['Bookings',  d.TBooking,         '#f59e0b'],
             ['Contracts', d.TContract,        '#10b981']
           ].map(([l,v,c]) => `
-            <div class="crm-stat" style="display:flex; flex-direction:column; align-items:center; background:var(--gray-50); padding:16px; border-radius:var(--r-md); border:1px solid var(--border-color);">
-              <span class="crm-stat-value" style="color:${c}; font-size:24px; font-weight:800;">${v}</span>
-              <span class="crm-stat-label" style="font-size:12px; font-weight:600; color:var(--gray-600); text-transform:uppercase; margin-top:4px;">${l}</span>
+            <div class="crm-stat-box">
+              <span class="crm-stat-value" style="color:${c};">${v}</span>
+              <span class="crm-stat-label">${l}</span>
             </div>`).join('')}
         </div>
       </div>
