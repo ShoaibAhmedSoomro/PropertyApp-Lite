@@ -10,18 +10,18 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy:   #191248;
-      --red:    #e81a47;
-      --font:   'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --navy:  #191248;
+      --red:   #e81a47;
+      --white: #fafaf8;
+      --font:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     html, body { height: 100%; }
 
     body {
       font-family: var(--font);
-      /* Deep near-black with just a hint of navy — much less "blue" */
-      background: #0d0b1e;
-      color: #fff;
+      background: var(--white);
+      color: var(--navy);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -32,24 +32,24 @@
       overflow: hidden;
     }
 
-    /* Strong red glow top-right */
+    /* Subtle red bloom top-right */
     body::before {
       content: '';
       position: absolute;
-      width: 800px; height: 800px;
-      top: -350px; right: -250px;
+      width: 700px; height: 700px;
+      top: -320px; right: -220px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(232,26,71,.22) 0%, rgba(232,26,71,.06) 45%, transparent 70%);
+      background: radial-gradient(circle, rgba(232,26,71,.07) 0%, transparent 65%);
       pointer-events: none;
     }
-    /* Softer secondary glow bottom-left */
+    /* Subtle navy bloom bottom-left */
     body::after {
       content: '';
       position: absolute;
-      width: 600px; height: 600px;
-      bottom: -250px; left: -180px;
+      width: 500px; height: 500px;
+      bottom: -220px; left: -160px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(232,26,71,.10) 0%, transparent 60%);
+      background: radial-gradient(circle, rgba(25,18,72,.05) 0%, transparent 65%);
       pointer-events: none;
     }
 
@@ -68,7 +68,7 @@
       font-weight: 700;
       letter-spacing: 2.4px;
       text-transform: uppercase;
-      color: rgba(255,255,255,.4);
+      color: rgba(25,18,72,.35);
     }
 
     .heading {
@@ -80,7 +80,7 @@
     .heading h1 {
       font-size: clamp(22px, 4vw, 32px);
       font-weight: 800;
-      color: #fff;
+      color: var(--navy);
       line-height: 1.2;
       letter-spacing: -0.025em;
       margin-bottom: 10px;
@@ -88,7 +88,7 @@
     .heading h1 em { font-style: normal; color: var(--red); }
     .heading p {
       font-size: 14px;
-      color: rgba(255,255,255,.5);
+      color: rgba(25,18,72,.45);
       line-height: 1.6;
     }
 
@@ -103,8 +103,8 @@
     }
 
     .tile {
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.09);
+      background: #ffffff;
+      border: 1px solid rgba(25,18,72,.10);
       border-radius: 16px;
       padding: 24px 22px;
       text-decoration: none;
@@ -112,30 +112,31 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
+      box-shadow: 0 2px 10px rgba(25,18,72,.06), 0 1px 2px rgba(25,18,72,.04);
       transition: background 0.15s, border-color 0.15s, transform 0.15s, box-shadow 0.15s;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
     }
     .tile:hover {
-      background: rgba(232,26,71,.10);
       border-color: rgba(232,26,71,.35);
       transform: translateY(-3px);
-      box-shadow: 0 12px 32px rgba(232,26,71,.18);
+      box-shadow: 0 10px 28px rgba(232,26,71,.13), 0 2px 6px rgba(232,26,71,.08);
       color: inherit;
     }
-    .tile:hover .tile-icon { background: rgba(232,26,71,.18); }
-    .tile:hover .tile-icon .material-symbols-outlined { color: rgba(232,26,71,.9); }
+    .tile:hover .tile-icon {
+      background: rgba(232,26,71,.10);
+    }
+    .tile:hover .tile-icon .material-symbols-outlined { color: var(--red); }
 
     .tile-icon {
       width: 38px; height: 38px;
       border-radius: 10px;
-      background: rgba(255,255,255,.08);
+      background: rgba(25,18,72,.06);
       display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
     }
-    .tile-icon .material-symbols-outlined { font-size: 18px; color: rgba(255,255,255,.6); }
+    .tile-icon .material-symbols-outlined { font-size: 18px; color: rgba(25,18,72,.45); }
 
-    .tile-name  { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
-    .tile-units { font-size: 12px; color: rgba(255,255,255,.45); font-weight: 500; margin-top: 2px; }
+    .tile-name  { font-size: 15px; font-weight: 700; color: var(--navy); letter-spacing: -0.01em; }
+    .tile-units { font-size: 12px; color: rgba(25,18,72,.45); font-weight: 500; margin-top: 2px; }
 
     .tile-action {
       display: flex;
@@ -143,12 +144,12 @@
       gap: 4px;
       font-size: 12px;
       font-weight: 600;
-      color: rgba(255,255,255,.4);
+      color: rgba(25,18,72,.3);
       margin-top: auto;
       transition: color 0.12s;
     }
     .tile-action .material-symbols-outlined { font-size: 14px; }
-    .tile:hover .tile-action { color: rgba(255,255,255,.8); }
+    .tile:hover .tile-action { color: var(--red); }
 
     .credits {
       margin-top: 44px;
@@ -160,9 +161,9 @@
       position: relative;
       z-index: 1;
     }
-    .credits-line1 { font-size: 12.5px; color: rgba(255,255,255,.4); font-weight: 500; }
-    .credits-line1 strong { color: rgba(255,255,255,.65); font-weight: 700; }
-    .credits-line2 { font-size: 11px; color: rgba(255,255,255,.25); letter-spacing: 0.03em; }
+    .credits-line1 { font-size: 12.5px; color: rgba(25,18,72,.38); font-weight: 500; }
+    .credits-line1 strong { color: rgba(25,18,72,.6); font-weight: 700; }
+    .credits-line2 { font-size: 11px; color: rgba(25,18,72,.25); letter-spacing: 0.03em; }
 
     @media (max-width: 480px) {
       .grid { grid-template-columns: 1fr; max-width: 320px; }
@@ -173,7 +174,7 @@
 <body>
 
   <div class="brand">
-    <img src="logo_white.svg" alt="PropertyApp" />
+    <img src="logo_dark.svg" alt="PropertyApp" />
     <span class="brand-company">Asico Real Estate LLC</span>
   </div>
 
