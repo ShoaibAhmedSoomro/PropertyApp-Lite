@@ -1,4 +1,4 @@
-# RealestateApp — Brand Guidelines
+# PropertyApp — Brand Guidelines
 
 > **Version:** July 2021  
 > **Document Type:** Official Brand Identity Guidelines  
@@ -20,7 +20,7 @@
 
 ## 1. Brand Overview
 
-**RealestateApp** is a modern, technology-forward real estate platform designed for the digital-first property market. The brand identity communicates trust, authority, and innovation — anchored by a deep navy palette and punctuated by a bold crimson-red accent. The visual language is clean, minimal, and confident, reflecting the professionalism expected in the real estate industry while remaining approachable for everyday users.
+**PropertyApp** is a modern, technology-forward real estate platform designed for the digital-first property market. The brand identity communicates trust, authority, and innovation — anchored by a deep navy palette and punctuated by a bold crimson-red accent. The visual language is clean, minimal, and confident, reflecting the professionalism expected in the real estate industry while remaining approachable for everyday users.
 
 ### Brand Personality
 
@@ -41,7 +41,7 @@
 The primary logo consists of two elements:
 
 - **The Logomark** — a stylized folded-flag/home icon in crimson red with dimensional shading
-- **The Wordmark** — "RealestateApp" set in a bold, geometric sans-serif typeface
+- **The Wordmark** — "PropertyApp" set in a bold, geometric sans-serif typeface
 
 These two elements must always appear together as the primary brand lock-up unless specific use cases (app icons, social avatars) require the mark only.
 
@@ -69,7 +69,7 @@ Always maintain a minimum clear space equal to the height of the "R" in the word
 
 ## 3. Color Palette
 
-The RealestateApp color system is built on four core colors. These must be used consistently across all brand materials.
+The PropertyApp color system is built on four core colors. These must be used consistently across all brand materials.
 
 ### 3.1 Primary Colors
 
@@ -215,7 +215,7 @@ The app icon is designed to sit naturally on an iPhone home screen alongside lea
 
 ### 6.2 Branded Merchandise
 
-RealestateApp branded merchandise follows these principles:
+PropertyApp branded merchandise follows these principles:
 
 - **Base color:** Deep Navy `#191248` for all primary items (bottles, bags, apparel)
 - **Logo placement:** The full horizontal logo lock-up (mark + wordmark) in white with the red logomark is preferred for merchandise
@@ -281,4 +281,4 @@ Photography used alongside the brand should follow these directives:
 
 ---
 
-*© RealestateApp. All rights reserved. This document is intended for internal use and approved brand partners only. Unauthorized reproduction or modification of brand assets is prohibited.*   
+*© PropertyApp. All rights reserved. This document is intended for internal use and approved brand partners only. Unauthorized reproduction or modification of brand assets is prohibited.*   

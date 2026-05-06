@@ -1,0 +1,108 @@
+# ══════════════════════════════════════════════════════════
+#  PropertyApp-Lite — Apache .htaccess
+#  Hardened for cPanel shared hosting
+# ══════════════════════════════════════════════════════════
+
+# ── Engine ─────────────────────────────────────────────────
+Options -Indexes -ExecCGI -Includes
+Options +FollowSymLinks
+
+ServerSignature Off
+
+# ── Default document ───────────────────────────────────────
+DirectoryIndex index.html
+
+# ── Rewrite engine ─────────────────────────────────────────
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Block hidden files / directories (dot-files)
+  RewriteRule (^|/)\.(?!well-known) - [F,L]
+
+  # Redirect HTTP → HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+# ── Security headers ───────────────────────────────────────
+<IfModule mod_headers.c>
+  # Prevent clickjacking
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # Stop MIME-type sniffing
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Enable XSS filter in older browsers
+  Header always set X-XSS-Protection "1; mode=block"
+
+  # Referrer policy
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Permissions policy — disable unused browser features
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+
+  # Content Security Policy
+  # Allows: self, Google Fonts, jsDelivr CDN (Chart.js), inline scripts (app uses inline onclick)
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self';"
+
+  # Remove server fingerprinting headers
+  Header unset X-Powered-By
+  Header unset Server
+</IfModule>
+
+# ── HTTPS Strict Transport Security ────────────────────────
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+</IfModule>
+
+# ── Block sensitive file access ────────────────────────────
+<FilesMatch "(^\.htaccess|^\.htpasswd|^\.git|^\.env|\.md$|\.json$|\.log$|\.sql$|\.bak$|\.config$)">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# Allow manifest/package JSON if you add them later — remove if not needed
+# <FilesMatch "^manifest\.json$">
+#   Require all granted
+# </FilesMatch>
+
+# ── Block bad bots and scanners ────────────────────────────
+<IfModule mod_rewrite.c>
+  RewriteCond %{HTTP_USER_AGENT} (sqlmap|nikto|nmap|masscan|zgrab|python-requests|curl|wget|libwww) [NC]
+  RewriteRule .* - [F,L]
+</IfModule>
+
+# ── Disable HTTP TRACE / TRACK methods ─────────────────────
+<IfModule mod_rewrite.c>
+  RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
+  RewriteRule .* - [F,L]
+</IfModule>
+
+# ── Compression ────────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript image/svg+xml
+</IfModule>
+
+# ── Browser caching ────────────────────────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html                 "access plus 1 hour"
+  ExpiresByType text/css                  "access plus 1 month"
+  ExpiresByType application/javascript    "access plus 1 month"
+  ExpiresByType image/svg+xml             "access plus 1 month"
+  ExpiresByType image/png                 "access plus 1 month"
+  ExpiresByType image/jpeg                "access plus 1 month"
+  ExpiresByType image/webp                "access plus 1 month"
+  ExpiresByType image/x-icon              "access plus 1 year"
+  ExpiresByType font/woff2                "access plus 1 year"
+</IfModule>
+
+# ── ETag ───────────────────────────────────────────────────
+FileETag None
+Header unset ETag
