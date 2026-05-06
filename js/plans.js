@@ -144,40 +144,19 @@ const TIER_KEYS = ['free', 'lite', 'pro', 'enterprise'];
     anchor.after(badge);
   }
 
-  /* ── Lock nav items ───────────────────────────────────── */
+  /* ── Hide locked nav items ───────────────────────────── */
   function applyPlanLocks() {
     document.querySelectorAll('[data-route]').forEach(el => {
       const route = el.getAttribute('data-route');
       if (!route || !isLocked(route)) return;
-
-      el.classList.add('nav-locked');
-      el.removeAttribute('onclick');
-      el.onclick = e => { e.preventDefault(); showUpgradeModal(route); };
-
-      const lockIcon = document.createElement('span');
-      lockIcon.className = 'nav-lock material-symbols-outlined';
-      lockIcon.textContent = 'lock';
-      el.appendChild(lockIcon);
+      el.style.display = 'none';
     });
 
-    /* If every child of a nav-group is locked, style the header */
+    /* If every child of a nav-group is hidden, hide the entire group */
     document.querySelectorAll('.nav-group').forEach(group => {
       const items = group.querySelectorAll('[data-route]');
-      if (items.length && [...items].every(i => i.classList.contains('nav-locked'))) {
-        const header = group.querySelector('.nav-group-header');
-        if (header) {
-          header.classList.add('nav-group-all-locked');
-          /* Override click — open group to show locked children */
-          const origClick = header.getAttribute('onclick');
-          header.removeAttribute('onclick');
-          header.onclick = e => {
-            const itemsEl = group.querySelector('.nav-group-items');
-            if (itemsEl) {
-              const open = itemsEl.classList.toggle('open');
-              header.classList.toggle('open', open);
-            }
-          };
-        }
+      if (items.length && [...items].every(i => i.style.display === 'none')) {
+        group.style.display = 'none';
       }
     });
   }

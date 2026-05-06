@@ -537,14 +537,8 @@ input, select, textarea, button { font-family: inherit; font-size: inherit; }
 [data-theme="dark"] .plan-stat-value { color: rgba(255,255,255,.7); }
 [data-theme="dark"] .plan-stat .material-symbols-outlined { color: rgba(255,255,255,.3); }
 
-/* ── Locked nav items ── */
-.nav-item.nav-locked,
-.nav-item.nav-locked.sub { opacity: 0.4; cursor: not-allowed; pointer-events: auto; }
-.nav-item.nav-locked:hover { background: var(--gray-100); color: var(--gray-500); }
-[data-theme="dark"] .nav-item.nav-locked:hover { background: rgba(255,255,255,.03); }
-.nav-lock { font-size: 12px; color: var(--gray-400); margin-left: auto; flex-shrink: 0; }
-.nav-group-header.nav-group-all-locked { opacity: 0.45; }
-.nav-group-header.nav-group-all-locked:hover { background: var(--gray-100); }
+/* ── Locked nav items — hidden per plan tier ── */
+.nav-item.nav-locked { display: none; }
 
 /* ── Upgrade modal ── */
 .upgrade-modal-body { text-align: center; padding: 8px 0 4px; }
